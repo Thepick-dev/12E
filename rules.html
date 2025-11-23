@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>LMS XII - Rules</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=League+Gothic&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#ffffff;
+  --text:#000000;
+  --muted:#111;
+  --accent-pink:#ff007f; /* Rules neon */
+  --gap-large:48px;
+  --gap-mid:28px;
+}
+
+body {
+  margin:0;
+  font-family:"League Gothic", Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+a { text-decoration:none; }
+.container { max-width:960px; width:100%; padding:20px; box-sizing:border-box; }
+
+/* Header / Navigation */
+.nav { width:100%; display:flex; justify-content:center; gap:28px; padding:12px 0; }
+.nav a { color:#000; font-weight:700; font-size:22px; text-transform:uppercase; font-style:italic; }
+.nav a.current { color:var(--accent-pink); font-style:italic; }
+
+/* Title */
+h1.title { 
+  font-family:"Bebas Neue", sans-serif;
+  font-weight:400;
+  font-size:clamp(100px, 12vw, 160px);
+  margin:40px 0 10px;
+  text-align:center;
+  padding:20px;
+  border:2px solid;
+  border-image: linear-gradient(90deg, #ff007f, #00f2ff, #ffd400) 1;
+  border-radius:8px;
+  box-shadow: inset 0 -4px 10px rgba(0,0,0,0.04);
+}
+
+/* Tagline */
+.tagline { font-size:clamp(26px,5vw,36px); text-transform:uppercase; font-weight:700; color:var(--accent-pink); text-align:center; margin-bottom:48px; }
+
+/* Main content */
+main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
+.rules-text { font-size:20px; line-height:1.8; margin-bottom: var(--gap-large); }
+.rules-text span.highlight { color: var(--accent-pink); font-weight:700; }
+
+/* Tables */
+table { width:80%; margin:0 auto 40px auto; border-collapse:collapse; }
+table th, table td { border:1px solid #000; padding:12px; text-align:center; font-size:18px; }
+table th { background:purple; color:#fff; }
+table td { background:#ddd; color:#000; text-transform:uppercase; font-weight:700; font-style:italic; }
+
+</style>
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="predict.html">Predict</a>
+    <a href="table.html">Table</a>
+    <a href="rules.html" class="current">Rules</a>
+    <a href="updates.html">Updates</a>
+  </nav>
+
+  <header>
+    <h1 class="title">LMS XII</h1>
+    <div class="tagline">GAME RULES</div>
+  </header>
+
+  <main>
+    <div class="rules-text">
+      <p><span class="highlight">PAY TEN OF YOUR FINEST ENGLISH POUNDS TO ENTER.</span></p>
+      <p>At the start of each gameweek, pick a team you think will win. You can only pick each team once throughout the competition, other than 2 pre-selected teams you may pick twice.</p>
+      <p>Points are awarded based on your selected team’s result according to the table below. The teams are split into quartiles based on league position at the start of the gameweek. Points reward bravery — away wins against higher quartile teams are worth more!</p>
+      <p>Also pick a player each week. They score points for any goals and assists. Use Haaland wisely!</p>
+      <p>The competition lasts until the end of the season. The player with the most points wins. What constitutes a gameweek is at the organiser’s discretion.</p>
+      <p><span class="highlight">BE BRAVE — COWARDICE WILL GET YOU NOWHERE!</span></p>
+    </div>
+
+    <h2>Team Points Table</h2>
+    <table>
+      <tr><th>Result/Venue</th><th>Q-Gap</th><th>Team Points</th></tr>
+      <tr><td>W/H</td><td>+3</td><td>90</td></tr>
+      <tr><td>W/H</td><td>+2</td><td>80</td></tr>
+      <tr><td>W/H</td><td>+1</td><td>70</td></tr>
+      <tr><td>W/H</td><td>0</td><td>60</td></tr>
+      <tr><td>W/H</td><td>-1</td><td>50</td></tr>
+      <tr><td>W/H</td><td>-2</td><td>40</td></tr>
+      <tr><td>W/H</td><td>-3</td><td>30</td></tr>
+      <tr><td>W/A</td><td>+3</td><td>100</td></tr>
+      <tr><td>W/A</td><td>+2</td><td>90</td></tr>
+      <tr><td>W/A</td><td>+1</td><td>80</td></tr>
+      <tr><td>W/A</td><td>0</td><td>70</td></tr>
+      <tr><td>W/A</td><td>-1</td><td>60</td></tr>
+      <tr><td>W/A</td><td>-2</td><td>50</td></tr>
+      <tr><td>W/A</td><td>-3</td><td>40</td></tr>
+      <tr><td>D/H</td><td>+3</td><td>36</td></tr>
+      <tr><td>D/H</td><td>+2</td><td>32</td></tr>
+      <tr><td>D/H</td><td>+1</td><td>28</td></tr>
+      <tr><td>D/H</td><td>0</td><td>18</td></tr>
+      <tr><td>D/H</td><td>-1</td><td>15</td></tr>
+      <tr><td>D/H</td><td>-2</td><td>12</td></tr>
+      <tr><td>D/H</td><td>-3</td><td>10</td></tr>
+      <tr><td>D/A</td><td>+3</td><td>40</td></tr>
+      <tr><td>D/A</td><td>+2</td><td>36</td></tr>
+      <tr><td>D/A</td><td>+1</td><td>32</td></tr>
+      <tr><td>D/A</td><td>0</td><td>20</td></tr>
+      <tr><td>D/A</td><td>-1</td><td>18</td></tr>
+      <tr><td>D/A</td><td>-2</td><td>15</td></tr>
+      <tr><td>D/A</td><td>-3</td><td>12</td></tr>
+      <tr><td>L/H or L/A</td><td>Any</td><td>0</td></tr>
+    </table>
+
+    <h2>Player Points</h2>
+    <table>
+      <tr><th>Action</th><th>Points</th></tr>
+      <tr><td>Goal</td><td>30</td></tr>
+      <tr><td>Assist</td><td>15</td></tr>
+    </table>
+  </main>
+</div>
+</body>
+</html>
