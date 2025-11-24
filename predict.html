@@ -73,18 +73,18 @@ main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
 }
 .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
 .col { flex:1; min-width:180px; }
-.label { font-weight:700; margin-bottom:6px; display:block; font-size:14px; color: #222; }
+.label { font-weight:900; margin-bottom:6px; display:block; font-size:15px; color: #222; letter-spacing:0.6px; }
 .select, .input, .button {
-  width:100%; padding:10px 12px; border-radius:8px; border:1px solid #ddd; font-size:16px; box-sizing:border-box;
+  width:100%; padding:12px 14px; border-radius:8px; border:1px solid #ddd; font-size:16px; box-sizing:border-box;
   font-family:inherit;
 }
-.button { background:#000;color:#fff;border:none;cursor:pointer;padding:12px 14px; font-weight:700; text-transform:uppercase; }
+.button { background:#000;color:#fff;border:none;cursor:pointer;padding:14px 18px; font-weight:900; text-transform:uppercase; font-size:18px; }
 .small { font-size:14px; padding:8px 10px; }
 
-/* Player nav */
+/* Player nav - black buttons with white italic text */
 .player-nav { display:flex; gap:8px; justify-content:center; margin:18px 0 28px; flex-wrap:wrap; }
-.player-nav button { background:#f5f5f5;border:1px solid #e3e3e3;padding:10px 14px;border-radius:8px;font-weight:700;cursor:pointer; text-transform:uppercase; }
-.player-nav button.active { outline:3px solid rgba(255,138,43,0.12); }
+.player-nav button { background:#000; color:#fff; border: none; padding:12px 18px; border-radius:8px; font-weight:900; cursor:pointer; text-transform:uppercase; font-style:italic; }
+.player-nav button.active { outline:3px solid rgba(0,0,0,0.12); }
 
 /* Player area */
 .player-area { margin-bottom: var(--player-area-gap); padding:18px; border-radius:12px; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.03); text-align:left; }
@@ -93,26 +93,27 @@ main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
 .subtle { color:#666; font-size:13px; }
 
 /* Fixtures row */
-.fixtures { display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; }
+.fixtures { display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; align-items:center; }
 .team-box {
   padding: var(--team-box-padding);
   border-radius:8px;
-  min-width:110px;
+  min-width:120px;
   text-align:center;
-  font-weight:800;
+  font-weight:900;
   text-transform:uppercase;
   box-shadow: 0 4px 10px rgba(0,0,0,0.03);
   cursor:pointer;
+  display:inline-block;
 }
 .team-box.disabled { background:#f0f0f0; color:#000 !important; cursor:default; opacity:0.9; }
 
 /* Picked players list */
-.picked-list { margin-top:12px; padding:12px; background: #fafafa; border-radius:8px; border:1px dashed #eee; }
+.picked-list { margin-top:12px; padding:12px; background: #fafafa; border-radius:8px; border:1px dashed #eee; min-height:48px; }
 .picked-list strong { display:block; margin-bottom:8px; text-transform:uppercase; }
 
 /* Points grid */
 .points-grid { margin-top:12px; overflow:auto; }
-.points-grid table { width:100%; border-collapse:collapse; }
+.points-grid table { width:60%; margin-left:0; border-collapse:collapse; }
 .points-grid th, .points-grid td { padding:8px 10px; text-align:center; border-bottom:1px solid #eee; font-size:14px; }
 .points-grid th { font-weight:800; text-transform:uppercase; font-size:13px; }
 .points-grid td.team { text-align:left; font-weight:700; color:#000; }
@@ -124,6 +125,7 @@ main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
   .row { flex-direction:column; }
   .team-box { min-width:110px; flex:1; }
   h1.title { margin-top:20px; }
+  .points-grid table { width:100%; }
 }
 </style>
 </head>
@@ -139,85 +141,88 @@ main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
 
   <header>
     <h1 class="title">LMS XII</h1>
-    <div class="tagline">CHOOSE <s>LIFE</s> HARV</div>
+    <div class="tagline">PICK!</div>
   </header>
 
   <main>
 
     <!-- TOP QUESTIONS -->
     <section class="top-questions" aria-labelledby="top-questions-label">
-      <div id="top-questions-label" class="label" style="font-size:16px">Weekly picks — enter your details</div>
+      <div id="top-questions-label" class="label" style="font-size:18px">PICK!</div>
 
-      <div class="row">
+      <div class="row" style="margin-top:8px;">
         <div class="col">
-          <label class="label">1) Select your name</label>
-          <!-- dropdown of players -->
-          <select id="top-name" class="select">
-            <option value="">-- choose your name --</option>
-            <option value="BILLY">Billy</option>
-            <option value="CROSBO">Crosbo</option>
-            <option value="INGZ">Ingz</option>
-            <option value="KABZ">Kabz</option>
+          <label class="label">YOUR NAME</label>
+          <!-- dropdown of eight players -->
+          <select id="top-name" class="select" aria-label="Your name">
+            <option value="">-- CHOOSE YOUR NAME --</option>
+            <option value="BILLY">BILLY</option>
+            <option value="CROSBO">CROSBO</option>
+            <option value="INGZ">INGZ</option>
+            <option value="KABZ">KABZ</option>
+            <option value="KIT">KIT</option>
+            <option value="LOCKY">LOCKY</option>
+            <option value="STOOBZ">STOOBZ</option>
+            <option value="T-CITY">T-CITY</option>
           </select>
         </div>
 
         <div class="col">
-          <label class="label">2) Choose your team for the week</label>
-          <select id="top-team" class="select">
-            <option value="">-- choose a team --</option>
-            <option value="ARSENAL">ARSENAL</option>
-            <option value="NEWCASTLE">NEWCASTLE</option>
-            <option value="MANCITY">MANCITY</option>
-            <option value="BRIGHTON">BRIGHTON</option>
-            <option value="MANUTD">MAN UTD</option>
-            <option value="SPURS">SPURS</option>
-            <option value="CHELSEA">CHELSEA</option>
-            <option value="LIVERPOOL">LIVERPOOL</option>
+          <label class="label">TEAM FOR THE WEEK</label>
+          <select id="top-team" class="select" aria-label="Team for the week">
+            <option value="">-- CHOOSE A TEAM --</option>
+            <!-- 20 current Premier League teams (common current list) -->
+            <option>ARSENAL</option>
+            <option>ASTON VILLA</option>
+            <option>AFC BOURNEMOUTH</option>
+            <option>BRENTFORD</option>
+            <option>BRIGHTON & HOVE ALBION</option>
+            <option>BURNLEY</option>
+            <option>CHELSEA</option>
+            <option>CRYSTAL PALACE</option>
+            <option>EVERTON</option>
+            <option>FULHAM</option>
+            <option>LIVERPOOL</option>
+            <option>LUTON TOWN</option>
+            <option>MAN CITY</option>
+            <option>MAN UTD</option>
+            <option>NEWCASTLE UTD</option>
+            <option>NOTTINGHAM FOREST</option>
+            <option>ASTON VILLA</option>
+            <option>TOTENHAM HOTSPUR</option>
+            <option>WEST HAM UNITED</option>
+            <option>WOLVES</option>
           </select>
         </div>
 
         <div class="col">
-          <label class="label">3) Player (free text)</label>
-          <input id="top-player" class="input" placeholder="Enter player name (e.g. Haaland)">
+          <label class="label">PLAYER (FREE TEXT)</label>
+          <input id="top-player" class="input" placeholder="ENTER PLAYER NAME (E.G. HAALAND)" aria-label="Player pick">
         </div>
       </div>
 
       <hr style="margin:16px 0; border:none; border-top:1px solid #eee;">
 
-      <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
-        <div>
-          <div class="label">Weekly question</div>
-          <div id="wyr" style="font-weight:800; margin-bottom:8px;">Would you rather: win by 3–0 away OR score last-minute winner at home?</div>
-          <div style="display:flex; gap:8px; align-items:center;">
-            <label style="display:flex; gap:6px; align-items:center;"><input type="radio" name="wyr" value="away"> Win by 3–0 away</label>
-            <label style="display:flex; gap:6px; align-items:center;"><input type="radio" name="wyr" value="last"> Last-minute winner at home</label>
-          </div>
-        </div>
-
-        <div style="margin-left:auto;">
-          <button id="randomiseBtn" class="button small">Randomise question</button>
-        </div>
-      </div>
-
-      <div style="margin-top:14px; display:flex; gap:10px;">
-        <button class="button" id="submitPick">Submit pick (mock)</button>
-        <button class="button small" id="clearTop">Clear</button>
+      <div style="display:flex; gap:10px;">
+        <button class="button" id="submitPick">SUBMIT PICK</button>
       </div>
     </section>
 
-    <!-- PLAYER NAV -->
+    <!-- PLAYER NAV (black buttons) -->
     <div class="player-nav" role="navigation" aria-label="Jump to player">
       <button data-player="BILLY">BILLY</button>
       <button data-player="CROSBO">CROSBO</button>
       <button data-player="INGZ">INGZ</button>
       <button data-player="KABZ">KABZ</button>
+      <button data-player="KIT">KIT</button>
+      <button data-player="LOCKY">LOCKY</button>
+      <button data-player="STOOBZ">STOOBZ</button>
+      <button data-player="T-CITY">T-CITY</button>
     </div>
 
     <!-- PLAYER AREAS -->
     <section id="players">
-
-      <!-- We'll render four player panels from JS -->
-      <!-- placeholders will be replaced by JS -->
+      <!-- JS will render panels -->
     </section>
 
   </main>
@@ -225,116 +230,84 @@ main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
 
 <script>
 /* -------------------------
-   Mock data & helpers
+   Team colour map (primary bg, secondary text)
+   Add or tweak colours as desired.
    ------------------------- */
-
-// Teams + colours (primary background, secondary text)
 const TEAMS = {
-  'ARSENAL': {primary:'#e60000', secondary:'#ffffff', opp:'ARS'},
-  'NEWCASTLE': {primary:'#000000', secondary:'#ffffff', opp:'NEW'},
-  'MANCITY': {primary:'#8fd6ff', secondary:'#003366', opp:'MCI'},
-  'BRIGHTON': {primary:'#0057b7', secondary:'#ffffff', opp:'BHA'},
-  'MANUTD': {primary:'#DA291C', secondary:'#ffffff', opp:'MUN'},
-  'SPURS': {primary:'#061A40', secondary:'#ffffff', opp:'TOT'},
-  'CHELSEA': {primary:'#034694', secondary:'#ffffff', opp:'CHE'},
-  'LIVERPOOL': {primary:'#c8102e', secondary:'#ffffff', opp:'LIV'}
+  'ARSENAL': {primary:'#e21b1b', secondary:'#ffffff'},
+  'ASTON VILLA': {primary:'#7a003c', secondary:'#ffffff'},
+  'AFC BOURNEMOUTH': {primary:'#d71920', secondary:'#ffffff'},
+  'BRENTFORD': {primary:'#e03a3e', secondary:'#ffffff'},
+  'BRIGHTON & HOVE ALBION': {primary:'#0057b7', secondary:'#ffffff'},
+  'BURNLEY': {primary:'#6a2743', secondary:'#ffffff'},
+  'CHELSEA': {primary:'#034694', secondary:'#ffffff'},
+  'CRYSTAL PALACE': {primary:'#1b4588', secondary:'#ffffff'},
+  'EVERTON': {primary:'#003399', secondary:'#ffffff'},
+  'FULHAM': {primary:'#000000', secondary:'#ffffff'},
+  'LIVERPOOL': {primary:'#c8102e', secondary:'#ffffff'},
+  'LUTON TOWN': {primary:'#f58020', secondary:'#000000'},
+  'MAN CITY': {primary:'#8fd6ff', secondary:'#00263a'},
+  'MAN UTD': {primary:'#da291c', secondary:'#ffffff'},
+  'NEWCASTLE UTD': {primary:'#000000', secondary:'#ffffff'},
+  'NOTTINGHAM FOREST': {primary:'#b1121a', secondary:'#ffffff'},
+  'TOTENHAM HOTSPUR': {primary:'#061a40', secondary:'#ffffff'},
+  'WEST HAM UNITED': {primary:'#7a263a', secondary:'#ffffff'},
+  'WOLVES': {primary:'#fdb913', secondary:'#000000'},
+  'SHEFFIELD UNITED': {primary:'#a30a0a', secondary:'#ffffff'} // filler if needed
 };
 
-// Players in competition
-const PLAYERS = ['BILLY','CROSBO','INGZ','KABZ'];
+/* list of 8 players */
+const PLAYERS = ['BILLY','CROSBO','INGZ','KABZ','KIT','LOCKY','STOOBZ','T-CITY'];
 
-// Next Gameweek fixtures (mock)
-const NEXT_GW_FIXTURES = [
-  ['ARSENAL','LIVERPOOL'],
-  ['NEWCASTLE','MANCITY'],
-  ['BRIGHTON','MANUTD'],
-  ['SPURS','CHELSEA']
+/* Fixtures you provided (interpreted as pairs with times) */
+const FIXTURES = [
+  {home:'MANCHESTER UNITED', away:'MANCHESTER CITY', time:'12:30'},
+  {home:'CHELSEA', away:'BRENTFORD', time:'15:00'},
+  {home:'LEEDS UNITED', away:'FULHAM', time:'15:00'},
+  {home:'LIVERPOOL', away:'BURNLEY', time:'15:00'},
+  {home:'SUNDERLAND', away:'CRYSTAL PALACE', time:'15:00'},
+  {home:'TOTTENHAM HOTSPUR', away:'WEST HAM UNITED', time:'15:00'},
+  {home:'NOTTINGHAM FOREST', away:'ARSENAL', time:'17:30'},
+  {home:'WOLVERHAMPTON WANDERERS', away:'NEWCASTLE UTD', time:'14:00'},
+  {home:'ASTON VILLA', away:'EVERTON', time:'16:30'},
+  {home:'BRIGHTON & HOVE ALBION', away:'AFC BOURNEMOUTH', time:'20:00'}
 ];
 
-// Mock historical picks & points for 10 weeks (we're half-way: weeks 1-5 filled)
-const MOCK_HISTORY = {
-  'BILLY': {
-    picks: [
-      // week, team, opponent, teamPts, player, playerPts
-      [1,'ARSENAL','LIVERPOOL',60,'Saka',0],
-      [2,'MANCITY','NEWCASTLE',100,'Haaland',60],
-      [3,'BRIGHTON','MANUTD',40,'Solly',0],
-      [4,'CHELSEA','SPURS',0,'Gakpo',0],
-      [5,'LIVERPOOL','ARSENAL',70,'Salah',30]
-    ]
-  },
-  'CROSBO': {
-    picks:[
-      [1,'NEWCASTLE','MANCITY',30,'Wilson',0],
-      [2,'MANUTD','BRIGHTON',60,'Rashford',0],
-      [3,'ARSENAL','LIVERPOOL',0,'Odegaard',0],
-      [4,'MANCITY','NEWCASTLE',100,'Haaland',30],
-      [5,'BRIGHTON','MANUTD',32,'Trossard',0]
-    ]
-  },
-  'INGZ': {
-    picks:[
-      [1,'BRIGHTON','MANUTD',36,'Gordon',0],
-      [2,'LIVERPOOL','ARSENAL',70,'Salah',30],
-      [3,'NEWCASTLE','MANCITY',40,'Almiron',0],
-      [4,'MANUTD','BRIGHTON',0,'Antony',0],
-      [5,'ARSENAL','LIVERPOOL',60,'Jesus',0]
-    ]
-  },
-  'KABZ': {
-    picks:[
-      [1,'SPURS','CHELSEA',60,'Kane',30],
-      [2,'ARSENAL','LIVERPOOL',90,'Saka',0],
-      [3,'MANCITY','NEWCASTLE',80,'Haaland',60],
-      [4,'LIVERPOOL','ARSENAL',70,'Salah',30],
-      [5,'CHELSEA','SPURS',18,'Pulisic',0]
-    ]
-  }
-};
+/* total gameweeks in comp (user asked for 17) */
+const TOTAL_WEEKS = 17;
 
-// Build week count
-const TOTAL_WEEKS = 10;
-
-/* -------------------------
-   DOM rendering
-   ------------------------- */
-
-const playersContainer = document.getElementById('players');
-
+/* create player panel */
 function createPlayerPanel(playerId){
-  // create container
-  const div = document.createElement('div');
-  div.className = 'player-area';
-  div.id = 'player-' + playerId;
+  const container = document.createElement('div');
+  container.className = 'player-area';
+  container.id = 'player-' + playerId;
 
   // header
   const header = document.createElement('div');
   header.className = 'player-title';
   header.innerHTML = `<div>
-      <div class="player-name">${playerId}</div>
-      <div class="subtle">Click a team below to select (mock) — grayed boxes are already used</div>
+    <div class="player-name">${playerId}</div>
+    <div class="subtle">FIXTURES - NEXT GAME WEEK</div>
     </div>
-    <div class="kv">TOTAL: <span id="${playerId}-total">0</span></div>`;
-  div.appendChild(header);
+    <div class="kv">WEEKLY TOTAL: <span id="${playerId}-total">0</span></div>`;
+  container.appendChild(header);
 
-  // fixtures area
+  // fixtures block
   const fixturesWrap = document.createElement('div');
   fixturesWrap.className = 'fixtures';
-  fixturesWrap.innerHTML = `<strong style="width:100%; display:block; margin-bottom:6px;">Fixtures — next gameweek</strong>`;
-  // build team boxes: show each team in fixtures; grey if player has already picked that team in history
-  const pickedTeams = (MOCK_HISTORY[playerId] && MOCK_HISTORY[playerId].picks) ? MOCK_HISTORY[playerId].picks.map(r=>r[1]) : [];
-  NEXT_GW_FIXTURES.forEach(pair => {
-    const home = pair[0], away = pair[1];
-    // home box
+  fixturesWrap.style.marginTop = '12px';
+  FIXTURES.forEach(f => {
+    // home
     const homeBox = document.createElement('div');
-    const homePicked = pickedTeams.includes(home);
-    homeBox.className = 'team-box' + (homePicked ? ' disabled':'');
-    homeBox.style.background = homePicked ? '#f0f0f0' : TEAMS[home].primary;
-    homeBox.style.color = homePicked ? '#000' : TEAMS[home].secondary;
-    homeBox.textContent = home;
+    homeBox.className = 'team-box';
+    const homeName = f.home.toUpperCase();
+    const homeColours = TEAMS[homeName] || {primary:'#eee', secondary:'#000'};
+    homeBox.style.background = homeColours.primary;
+    homeBox.style.color = homeColours.secondary;
+    homeBox.textContent = homeName;
     fixturesWrap.appendChild(homeBox);
 
-    // vs separator
+    // vs
     const vs = document.createElement('div');
     vs.style.alignSelf='center';
     vs.style.padding='0 6px';
@@ -343,144 +316,89 @@ function createPlayerPanel(playerId){
     vs.textContent = 'v';
     fixturesWrap.appendChild(vs);
 
-    // away box
+    // away
     const awayBox = document.createElement('div');
-    const awayPicked = pickedTeams.includes(away);
-    awayBox.className = 'team-box' + (awayPicked ? ' disabled':'');
-    awayBox.style.background = awayPicked ? '#f0f0f0' : TEAMS[away].primary;
-    awayBox.style.color = awayPicked ? '#000' : TEAMS[away].secondary;
-    awayBox.textContent = away;
+    awayBox.className = 'team-box';
+    const awayName = f.away.toUpperCase();
+    const awayColours = TEAMS[awayName] || {primary:'#eee', secondary:'#000'};
+    awayBox.style.background = awayColours.primary;
+    awayBox.style.color = awayColours.secondary;
+    awayBox.textContent = awayName;
     fixturesWrap.appendChild(awayBox);
 
-    // small spacer
-    const spacer = document.createElement('div');
-    spacer.style.flexBasis='100%';
-    spacer.style.height='8px';
-    fixturesWrap.appendChild(spacer);
+    // spacer line break
+    const br = document.createElement('div');
+    br.style.flexBasis='100%';
+    br.style.height='8px';
+    fixturesWrap.appendChild(br);
   });
+  container.appendChild(fixturesWrap);
 
-  div.appendChild(fixturesWrap);
-
-  // picked players list
+  // picked players placeholder (empty at start)
   const pickedWrap = document.createElement('div');
   pickedWrap.className = 'picked-list';
   pickedWrap.innerHTML = `<strong>YOU HAVE PICKED THESE PLAYERS — YOU ARE NOT PERMITTED TO PICK THEM AGAIN</strong>
-    <div id="${playerId}-pickedList"></div>`;
-  div.appendChild(pickedWrap);
+    <div id="${playerId}-pickedList"><em style="color:#777">No players picked yet</em></div>`;
+  container.appendChild(pickedWrap);
 
-  // points grid
+  // points grid: narrower, no cumulative column, 17 rows blank
   const gridWrap = document.createElement('div');
   gridWrap.className = 'points-grid';
   const table = document.createElement('table');
   table.innerHTML = `<thead><tr>
-    <th>Week</th>
-    <th>Team pick (opp)</th>
-    <th>Team pts</th>
-    <th>Player pick</th>
-    <th>Player pts</th>
-    <th>Week total</th>
-    <th>Cumulative</th>
-  </tr></thead><tbody id="${playerId}-tbody"></tbody>`;
+      <th>Week</th>
+      <th>Team pick (opp)</th>
+      <th>Team pts</th>
+      <th>Player pick</th>
+      <th>Player pts</th>
+      <th>Week total</th>
+    </tr></thead><tbody id="${playerId}-tbody"></tbody>`;
   gridWrap.appendChild(table);
-  div.appendChild(gridWrap);
+  container.appendChild(gridWrap);
 
-  // return
-  return div;
+  // populate empty rows
+  const tbody = table.querySelector('tbody');
+  for(let w=1; w<=TOTAL_WEEKS; w++){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${w}</td>
+      <td class="team" style="color:#999">—</td>
+      <td style="color:#999">—</td>
+      <td style="color:#999">—</td>
+      <td style="color:#999">—</td>
+      <td style="color:#999">—</td>`;
+    tbody.appendChild(tr);
+  }
+
+  return container;
 }
 
-// render all
+/* render all player panels */
+const playersContainer = document.getElementById('players');
 PLAYERS.forEach(p => playersContainer.appendChild(createPlayerPanel(p)));
 
-// populate data into each panel
-function populatePanels(){
-  PLAYERS.forEach(playerId => {
-    const hist = MOCK_HISTORY[playerId] && MOCK_HISTORY[playerId].picks ? MOCK_HISTORY[playerId].picks : [];
-    const pickedPlayersDiv = document.getElementById(playerId + '-pickedList');
-    // list of all player picks so far
-    pickedPlayersDiv.innerHTML = hist.map(r => `<div style="padding:6px 0;">• ${r[4]} (W${r[0]})</div>`).join('') || '<div style="color:#777">No players picked yet</div>';
-
-    // fill table: weeks 1..10. For weeks with no data show empty row
-    const tbody = document.getElementById(playerId + '-tbody');
-    tbody.innerHTML = '';
-    let cumulative = 0;
-    for(let w=1; w<=TOTAL_WEEKS; w++){
-      const existing = hist.find(r => r[0] === w);
-      const tr = document.createElement('tr');
-      if (existing){
-        const weekTotal = (existing[3]||0) + (existing[5]||0);
-        cumulative += weekTotal;
-        tr.innerHTML = `<td>${w}</td>
-          <td class="team">${existing[1]} (${existing[2]})</td>
-          <td>${existing[3]}</td>
-          <td>${existing[4]}</td>
-          <td>${existing[5]}</td>
-          <td>${weekTotal}</td>
-          <td>${cumulative}</td>`;
-      } else {
-        // blank / future
-        tr.innerHTML = `<td>${w}</td>
-          <td class="team" style="color:#999">—</td>
-          <td style="color:#999">—</td>
-          <td style="color:#999">—</td>
-          <td style="color:#999">—</td>
-          <td style="color:#999">—</td>
-          <td style="color:#999">${cumulative}</td>`;
-      }
-      tbody.appendChild(tr);
-    }
-    // update total display
-    document.getElementById(playerId + '-total').textContent = cumulative;
-  });
-}
-populatePanels();
-
-/* -------------------------
-   Player nav scrolling
-   ------------------------- */
-document.querySelectorAll('.player-nav button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const playerId = btn.getAttribute('data-player');
-    const el = document.getElementById('player-' + playerId);
-    if (el) {
-      el.scrollIntoView({behavior:'smooth', block:'start'});
-      // highlight active
-      document.querySelectorAll('.player-nav button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    }
+/* player nav scrolling */
+document.querySelectorAll('.player-nav button').forEach(btn =>{
+  btn.addEventListener('click', ()=>{
+    const id = btn.getAttribute('data-player');
+    const el = document.getElementById('player-' + id);
+    if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    document.querySelectorAll('.player-nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
   });
 });
 
-/* -------------------------
-   Randomise weekly question
-   ------------------------- */
-const QUESTIONS = [
-  'Would you rather: win by 3–0 away OR score last-minute winner at home?',
-  'Would you rather: a clean sheet but 0 goals OR win 3-2 with no clean sheet?',
-  'Would you rather: Haaland plays but scores 0 OR your striker scores a hat-trick?',
-  'Would you rather: a surprise away win OR expected home win?'
-];
-document.getElementById('randomiseBtn').addEventListener('click', () => {
-  const q = QUESTIONS[Math.floor(Math.random()*QUESTIONS.length)];
-  document.getElementById('wyr').textContent = q;
-});
-
-/* -------------------------
-   Mock submit handler (no backend)
-   ------------------------- */
-document.getElementById('submitPick').addEventListener('click', () => {
+/* submit handler (mock) */
+document.getElementById('submitPick').addEventListener('click', ()=>{
   const name = document.getElementById('top-name').value;
   const team = document.getElementById('top-team').value;
   const player = document.getElementById('top-player').value.trim();
-  if (!name || !team || !player) {
-    alert('Please enter name, team and player (mock submit).');
+  if(!name || !team || !player) {
+    alert('PLEASE SELECT YOUR NAME, TEAM FOR THE WEEK, AND ENTER A PLAYER.');
     return;
   }
-  alert(`(Mock) Saved pick for ${name}: ${team} / ${player}\nThis demo does not persist.`);
+  // this is a front-end mock - later we can POST to Apps Script to persist
+  alert(`PICK SUBMITTED:\n${name} — ${team} — ${player}\n(Front-end demo only)`);
 });
-
-/* -------------------------
-   Accessibility: keyboard focus for team boxes - not interactive in mock
-   ------------------------- */
 </script>
 </body>
 </html>
