@@ -13,10 +13,13 @@
   --text:#000000;
   --muted:#111;
   --accent-orange:#ff8a2b; /* Predict neon */
+  --neon-pink: #ff007f;
   --gap-large:48px;
-  --card-radius:10px;
+  --card-radius:12px;
   --player-area-gap:28px;
   --team-box-padding:10px 14px;
+  --team-box-width:140px;
+  --team-box-height:48px;
 }
 
 /* Base / Template */
@@ -33,7 +36,7 @@ body {
 }
 
 a { text-decoration:none; }
-.container { max-width:960px; width:100%; padding:20px; box-sizing:border-box; }
+.container { max-width:1120px; width:100%; padding:20px; box-sizing:border-box; }
 
 /* Header / Navigation */
 .nav { width:100%; display:flex; justify-content:center; gap:28px; padding:12px 0; }
@@ -44,35 +47,35 @@ a { text-decoration:none; }
 h1.title { 
   font-family:"Bebas Neue", sans-serif;
   font-weight:400;
-  font-size:clamp(100px, 12vw, 160px);
-  margin:40px 0 10px;
+  font-size:clamp(96px, 10vw, 140px);
+  margin:28px 0 8px;
   text-align:center;
-  padding:20px;
+  padding:18px;
   border:2px solid;
   border-image: linear-gradient(90deg, #ff007f, #00f2ff, #ffd400) 1;
   border-radius:8px;
   box-shadow: inset 0 -4px 10px rgba(0,0,0,0.04);
 }
 
-/* Tagline */
+/* Tagline - reinstated phrasing with strike-through */
 .tagline { 
-  font-size:clamp(26px,5vw,36px); 
-  text-transform:uppercase; 
+  font-size:clamp(20px,3.6vw,32px); 
+  text-transform:none; 
   font-weight:700; 
   color:var(--accent-orange); 
   text-align:center; 
-  margin-bottom:32px; 
+  margin-bottom:20px; 
 }
 
 /* Page layout */
-main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
+main { width:100%; max-width:1120px; padding:0 12px; text-align:center; }
 .top-questions {
-  background:#fff; border-radius:12px; padding:18px; margin-bottom:28px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  background:#fff; border-radius:var(--card-radius); padding:18px; margin-bottom:28px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
   text-align:left;
 }
 .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
-.col { flex:1; min-width:180px; }
+.col { flex:1; min-width:220px; }
 .label { font-weight:900; margin-bottom:6px; display:block; font-size:15px; color: #222; letter-spacing:0.6px; }
 .select, .input, .button {
   width:100%; padding:12px 14px; border-radius:8px; border:1px solid #ddd; font-size:16px; box-sizing:border-box;
@@ -81,31 +84,52 @@ main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
 .button { background:#000;color:#fff;border:none;cursor:pointer;padding:14px 18px; font-weight:900; text-transform:uppercase; font-size:18px; }
 .small { font-size:14px; padding:8px 10px; }
 
-/* Player nav - black buttons with white italic text */
+/* Player nav - black buttons with white italic text (vertical look removed) */
 .player-nav { display:flex; gap:8px; justify-content:center; margin:18px 0 28px; flex-wrap:wrap; }
 .player-nav button { background:#000; color:#fff; border: none; padding:12px 18px; border-radius:8px; font-weight:900; cursor:pointer; text-transform:uppercase; font-style:italic; }
 .player-nav button.active { outline:3px solid rgba(0,0,0,0.12); }
 
-/* Player area */
-.player-area { margin-bottom: var(--player-area-gap); padding:18px; border-radius:12px; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.03); text-align:left; }
+/* Player area - clearly boxed */
+.player-area {
+  margin-bottom: var(--player-area-gap);
+  padding:18px;
+  border-radius:12px;
+  background: linear-gradient(180deg,#fff,#fff);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  text-align:left;
+  border:1px solid rgba(0,0,0,0.04);
+}
+
+/* Player header */
 .player-title { display:flex; align-items:center; gap:12px; justify-content:space-between; }
-.player-name { font-size:20px; font-weight:900; text-transform:uppercase; letter-spacing:0.5px; }
+.player-name { font-size:28px; font-weight:900; text-transform:uppercase; letter-spacing:0.6px; }
+.player-total { font-size:18px; font-weight:900; text-transform:uppercase; color:#222; }
+
+/* Subtle text */
 .subtle { color:#666; font-size:13px; }
 
 /* Fixtures row */
 .fixtures { display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; align-items:center; }
 .team-box {
+  width: var(--team-box-width);
+  height: var(--team-box-height);
+  display:flex;
+  align-items:center;
+  justify-content:center;
   padding: var(--team-box-padding);
   border-radius:8px;
-  min-width:120px;
   text-align:center;
   font-weight:900;
   text-transform:uppercase;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
   cursor:pointer;
-  display:inline-block;
+  color:#000; /* black text on neon pink background per request */
+  background: var(--neon-pink);
+  flex-shrink:0;
 }
-.team-box.disabled { background:#f0f0f0; color:#000 !important; cursor:default; opacity:0.9; }
+
+/* disabled variant (not used at start) */
+.team-box.disabled { background:#e9e9e9; color:#000; cursor:default; opacity:0.95; }
 
 /* Picked players list */
 .picked-list { margin-top:12px; padding:12px; background: #fafafa; border-radius:8px; border:1px dashed #eee; min-height:48px; }
@@ -113,19 +137,20 @@ main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
 
 /* Points grid */
 .points-grid { margin-top:12px; overflow:auto; }
-.points-grid table { width:60%; margin-left:0; border-collapse:collapse; }
-.points-grid th, .points-grid td { padding:8px 10px; text-align:center; border-bottom:1px solid #eee; font-size:14px; }
+.points-grid table { width:50%; min-width:420px; border-collapse:collapse; }
+.points-grid th, .points-grid td { padding:8px 10px; text-align:center; border-bottom:1px solid #f0f0f0; font-size:14px; }
 .points-grid th { font-weight:800; text-transform:uppercase; font-size:13px; }
 .points-grid td.team { text-align:left; font-weight:700; color:#000; }
 
 /* small utility */
 .kv { font-weight:700; }
 
-@media(max-width:820px){
+@media(max-width:980px){
   .row { flex-direction:column; }
-  .team-box { min-width:110px; flex:1; }
-  h1.title { margin-top:20px; }
+  .team-box { width:120px; height:44px; }
   .points-grid table { width:100%; }
+  .player-name { font-size:22px; }
+  .player-total { font-size:16px; }
 }
 </style>
 </head>
@@ -141,7 +166,7 @@ main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
 
   <header>
     <h1 class="title">LMS XII</h1>
-    <div class="tagline">PICK!</div>
+    <div class="tagline">CHOOSE <s style="color:inherit">LIFE</s> HARV</div>
   </header>
 
   <main>
@@ -171,32 +196,31 @@ main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
           <label class="label">TEAM FOR THE WEEK</label>
           <select id="top-team" class="select" aria-label="Team for the week">
             <option value="">-- CHOOSE A TEAM --</option>
-            <!-- 20 current Premier League teams (common current list) -->
-            <option>ARSENAL</option>
-            <option>ASTON VILLA</option>
-            <option>AFC BOURNEMOUTH</option>
-            <option>BRENTFORD</option>
-            <option>BRIGHTON & HOVE ALBION</option>
-            <option>BURNLEY</option>
-            <option>CHELSEA</option>
-            <option>CRYSTAL PALACE</option>
-            <option>EVERTON</option>
-            <option>FULHAM</option>
-            <option>LIVERPOOL</option>
-            <option>LUTON TOWN</option>
-            <option>MAN CITY</option>
-            <option>MAN UTD</option>
-            <option>NEWCASTLE UTD</option>
-            <option>NOTTINGHAM FOREST</option>
-            <option>ASTON VILLA</option>
-            <option>TOTENHAM HOTSPUR</option>
-            <option>WEST HAM UNITED</option>
-            <option>WOLVES</option>
+            <option>Arsenal</option>
+            <option>Aston Villa</option>
+            <option>Bournemouth</option>
+            <option>Brentford</option>
+            <option>Brighton</option>
+            <option>Burnley</option>
+            <option>Chelsea</option>
+            <option>Palace</option>
+            <option>Everton</option>
+            <option>Fulham</option>
+            <option>Leeds</option>
+            <option>Liverpool</option>
+            <option>Man City</option>
+            <option>Man Utd</option>
+            <option>Newcastle</option>
+            <option>Forest</option>
+            <option>Sunderland</option>
+            <option>Spurs</option>
+            <option>West Ham</option>
+            <option>Wolves</option>
           </select>
         </div>
 
         <div class="col">
-          <label class="label">PLAYER (FREE TEXT)</label>
+          <label class="label">PLAYER</label>
           <input id="top-player" class="input" placeholder="ENTER PLAYER NAME (E.G. HAALAND)" aria-label="Player pick">
         </div>
       </div>
@@ -230,50 +254,31 @@ main { width:100%; max-width:960px; padding:0 12px; text-align:center; }
 
 <script>
 /* -------------------------
-   Team colour map (primary bg, secondary text)
-   Add or tweak colours as desired.
+   Team list (display form as requested)
    ------------------------- */
-const TEAMS = {
-  'ARSENAL': {primary:'#e21b1b', secondary:'#ffffff'},
-  'ASTON VILLA': {primary:'#7a003c', secondary:'#ffffff'},
-  'AFC BOURNEMOUTH': {primary:'#d71920', secondary:'#ffffff'},
-  'BRENTFORD': {primary:'#e03a3e', secondary:'#ffffff'},
-  'BRIGHTON & HOVE ALBION': {primary:'#0057b7', secondary:'#ffffff'},
-  'BURNLEY': {primary:'#6a2743', secondary:'#ffffff'},
-  'CHELSEA': {primary:'#034694', secondary:'#ffffff'},
-  'CRYSTAL PALACE': {primary:'#1b4588', secondary:'#ffffff'},
-  'EVERTON': {primary:'#003399', secondary:'#ffffff'},
-  'FULHAM': {primary:'#000000', secondary:'#ffffff'},
-  'LIVERPOOL': {primary:'#c8102e', secondary:'#ffffff'},
-  'LUTON TOWN': {primary:'#f58020', secondary:'#000000'},
-  'MAN CITY': {primary:'#8fd6ff', secondary:'#00263a'},
-  'MAN UTD': {primary:'#da291c', secondary:'#ffffff'},
-  'NEWCASTLE UTD': {primary:'#000000', secondary:'#ffffff'},
-  'NOTTINGHAM FOREST': {primary:'#b1121a', secondary:'#ffffff'},
-  'TOTENHAM HOTSPUR': {primary:'#061a40', secondary:'#ffffff'},
-  'WEST HAM UNITED': {primary:'#7a263a', secondary:'#ffffff'},
-  'WOLVES': {primary:'#fdb913', secondary:'#000000'},
-  'SHEFFIELD UNITED': {primary:'#a30a0a', secondary:'#ffffff'} // filler if needed
-};
+const TEAM_DISPLAY = [
+  'Arsenal','Aston Villa','Bournemouth','Brentford','Brighton','Burnley',
+  'Chelsea','Palace','Everton','Fulham','Leeds','Liverpool',
+  'Man City','Man Utd','Newcastle','Forest','Sunderland','Spurs','West Ham','Wolves'
+];
 
 /* list of 8 players */
 const PLAYERS = ['BILLY','CROSBO','INGZ','KABZ','KIT','LOCKY','STOOBZ','T-CITY'];
 
-/* Fixtures you provided (interpreted as pairs with times) */
+/* Fixtures — using the fixtures text you supplied (interpreted) */
 const FIXTURES = [
-  {home:'MANCHESTER UNITED', away:'MANCHESTER CITY', time:'12:30'},
-  {home:'CHELSEA', away:'BRENTFORD', time:'15:00'},
-  {home:'LEEDS UNITED', away:'FULHAM', time:'15:00'},
-  {home:'LIVERPOOL', away:'BURNLEY', time:'15:00'},
-  {home:'SUNDERLAND', away:'CRYSTAL PALACE', time:'15:00'},
-  {home:'TOTTENHAM HOTSPUR', away:'WEST HAM UNITED', time:'15:00'},
-  {home:'NOTTINGHAM FOREST', away:'ARSENAL', time:'17:30'},
-  {home:'WOLVERHAMPTON WANDERERS', away:'NEWCASTLE UTD', time:'14:00'},
-  {home:'ASTON VILLA', away:'EVERTON', time:'16:30'},
-  {home:'BRIGHTON & HOVE ALBION', away:'AFC BOURNEMOUTH', time:'20:00'}
+  {home:'Man Utd', away:'Man City', time:'12:30'},
+  {home:'Chelsea', away:'Brentford', time:'15:00'},
+  {home:'Leeds', away:'Fulham', time:'15:00'},
+  {home:'Liverpool', away:'Burnley', time:'15:00'},
+  {home:'Sunderland', away:'Palace', time:'15:00'},
+  {home:'Tottenham Hotspur', away:'West Ham', time:'15:00'},
+  {home:'Nottingham Forest', away:'Arsenal', time:'17:30'},
+  {home:'Wolverhampton Wanderers', away:'Newcastle', time:'14:00'},
+  {home:'Aston Villa', away:'Everton', time:'16:30'},
+  {home:'Brighton', away:'Bournemouth', time:'20:00'}
 ];
 
-/* total gameweeks in comp (user asked for 17) */
 const TOTAL_WEEKS = 17;
 
 /* create player panel */
@@ -282,32 +287,27 @@ function createPlayerPanel(playerId){
   container.className = 'player-area';
   container.id = 'player-' + playerId;
 
-  // header
+  // header: name and total points
   const header = document.createElement('div');
   header.className = 'player-title';
   header.innerHTML = `<div>
     <div class="player-name">${playerId}</div>
     <div class="subtle">FIXTURES - NEXT GAME WEEK</div>
     </div>
-    <div class="kv">WEEKLY TOTAL: <span id="${playerId}-total">0</span></div>`;
+    <div class="player-total">TOTAL: <span id="${playerId}-total">0</span></div>`;
   container.appendChild(header);
 
-  // fixtures block
+  // fixtures section: all team tiles available (black on neon pink)
   const fixturesWrap = document.createElement('div');
   fixturesWrap.className = 'fixtures';
   fixturesWrap.style.marginTop = '12px';
+  // create tiles for each match pair in FIXTURES
   FIXTURES.forEach(f => {
-    // home
     const homeBox = document.createElement('div');
     homeBox.className = 'team-box';
-    const homeName = f.home.toUpperCase();
-    const homeColours = TEAMS[homeName] || {primary:'#eee', secondary:'#000'};
-    homeBox.style.background = homeColours.primary;
-    homeBox.style.color = homeColours.secondary;
-    homeBox.textContent = homeName;
+    homeBox.textContent = f.home;
     fixturesWrap.appendChild(homeBox);
 
-    // vs
     const vs = document.createElement('div');
     vs.style.alignSelf='center';
     vs.style.padding='0 6px';
@@ -316,21 +316,15 @@ function createPlayerPanel(playerId){
     vs.textContent = 'v';
     fixturesWrap.appendChild(vs);
 
-    // away
     const awayBox = document.createElement('div');
     awayBox.className = 'team-box';
-    const awayName = f.away.toUpperCase();
-    const awayColours = TEAMS[awayName] || {primary:'#eee', secondary:'#000'};
-    awayBox.style.background = awayColours.primary;
-    awayBox.style.color = awayColours.secondary;
-    awayBox.textContent = awayName;
+    awayBox.textContent = f.away;
     fixturesWrap.appendChild(awayBox);
 
-    // spacer line break
-    const br = document.createElement('div');
-    br.style.flexBasis='100%';
-    br.style.height='8px';
-    fixturesWrap.appendChild(br);
+    const spacer = document.createElement('div');
+    spacer.style.flexBasis='100%';
+    spacer.style.height='8px';
+    fixturesWrap.appendChild(spacer);
   });
   container.appendChild(fixturesWrap);
 
@@ -341,7 +335,7 @@ function createPlayerPanel(playerId){
     <div id="${playerId}-pickedList"><em style="color:#777">No players picked yet</em></div>`;
   container.appendChild(pickedWrap);
 
-  // points grid: narrower, no cumulative column, 17 rows blank
+  // points grid: narrower, no cumulative column, 17 blank rows
   const gridWrap = document.createElement('div');
   gridWrap.className = 'points-grid';
   const table = document.createElement('table');
@@ -356,7 +350,6 @@ function createPlayerPanel(playerId){
   gridWrap.appendChild(table);
   container.appendChild(gridWrap);
 
-  // populate empty rows
   const tbody = table.querySelector('tbody');
   for(let w=1; w<=TOTAL_WEEKS; w++){
     const tr = document.createElement('tr');
@@ -396,7 +389,6 @@ document.getElementById('submitPick').addEventListener('click', ()=>{
     alert('PLEASE SELECT YOUR NAME, TEAM FOR THE WEEK, AND ENTER A PLAYER.');
     return;
   }
-  // this is a front-end mock - later we can POST to Apps Script to persist
   alert(`PICK SUBMITTED:\n${name} — ${team} — ${player}\n(Front-end demo only)`);
 });
 </script>
